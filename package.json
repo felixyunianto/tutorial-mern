@@ -1,0 +1,17 @@
+{
+  "name": "instagram_clone",
+  "version": "1.0.0",
+  "description": "Clone instagram apps",
+  "main": "index.js",
+  "author": "Felix Yunianto Gunawan",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "server" : "nodemon index.js"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.1"
+  }
+}
