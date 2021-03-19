@@ -1,7 +1,9 @@
-const mainRoutes = require('express').Router();
+const mainRoutes = require("express").Router();
 
-const authRoutes = require('./AuthRoutes');
+const authRoutes = require("./authRoutes");
+const postRoutes = require("./postRoutes");
 
-mainRoutes.use('/auth', authRoutes);
+mainRoutes.use("/auth", authRoutes);
+mainRoutes.use("/post", postRoutes);
 
 module.exports = mainRoutes;
