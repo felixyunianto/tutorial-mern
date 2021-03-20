@@ -2,8 +2,23 @@ const mongoose = require("mongoose");
 const Post = mongoose.model("Posts");
 
 module.exports = {
-    getAllPost: () => {
-        
+    getAllPost: (req, res) => {
+        Post.find()
+        .populate("postedBy")
+        .then((data) => {
+            res.status(200).send({
+                msg : 'Get All Post Data is Successful',
+                status: 200,
+                data
+            })
+        })
+        .catch((error) => {
+            res.status(500).send({
+                msg : 'Get All Post Data is Error',
+                status: 500,
+                error
+            })
+        })
     },
 
     createNewPost : (req, res) => {
@@ -12,7 +27,7 @@ module.exports = {
         const post = new Post({
             title: body.title,
             content:body.content,
-            postById: decodedToken
+            postedBy: decodedToken
         });
 
         post.save()

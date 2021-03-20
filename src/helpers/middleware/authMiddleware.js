@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const User = mongoose.model("Users");
 
 module.exports = {
   authenticateToken: (req, res, next) => {
@@ -11,15 +13,17 @@ module.exports = {
       });
     }
     jwt.verify(token, process.env.SECRET_KEY, (err, data) => {
+      // console.log("Data ", data);
       if (err) {
         return res.status(403).send({
           msg: "Invalid token",
-          status: 403
+          status: 403,
         });
       }
-
-      req.decodedToken = data
-      next();
+      User.findById(data.id).then((users) => {
+        req.decodedToken = users;
+        next();
+      });
     });
   },
 };
